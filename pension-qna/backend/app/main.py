@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.auth import router as auth_router
+from app.api.rooms import router as rooms_router
 from app.db import models  # noqa: F401 - registers SQLAlchemy metadata
 from app.db.session import Base, engine
 
@@ -14,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(auth_router)
+app.include_router(rooms_router)
 
 
 @app.on_event("startup")

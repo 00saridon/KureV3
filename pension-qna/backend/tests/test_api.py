@@ -10,3 +10,12 @@ def test_health_returns_ok():
 
     assert response.status_code == 200
     assert response.json() == {'status': 'ok'}
+
+
+def test_rooms_lists_seeded_active_rooms():
+    client = TestClient(app)
+
+    response = client.get('/rooms')
+
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
